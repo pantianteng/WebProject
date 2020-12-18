@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.GoodsDao">
+  <resultMap id="BaseResultMap" type="vo.Goods">
+    <id column="goodsId" jdbcType="VARCHAR" property="goodsid" />
+    <result column="goodsCode" jdbcType="VARCHAR" property="goodscode" />
+    <result column="goodsChrName" jdbcType="VARCHAR" property="goodschrname" />
+    <result column="goodsLocation" jdbcType="VARCHAR" property="goodslocation" />
+    <result column="payUnit" jdbcType="VARCHAR" property="payunit" />
+    <result column="firstDirectory" jdbcType="VARCHAR" property="firstdirectory" />
+    <result column="secondDirectory" jdbcType="VARCHAR" property="seconddirectory" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goodsId, goodsCode, goodsChrName, goodsLocation, payUnit, firstDirectory, secondDirectory
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where goodsId = #{goodsid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from goods
+    where goodsId = #{goodsid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="goodsId" keyProperty="goodsid" parameterType="vo.Goods" useGeneratedKeys="true">
+    insert into goods (goodsId,goodsCode, goodsChrName, goodsLocation,
+      payUnit, firstDirectory, secondDirectory
+      )
+    values (#{goodsid,jdbcType=VARCHAR},#{goodscode,jdbcType=VARCHAR}, #{goodschrname,jdbcType=VARCHAR}, #{goodslocation,jdbcType=VARCHAR},
+      #{payunit,jdbcType=VARCHAR}, #{firstdirectory,jdbcType=VARCHAR}, #{seconddirectory,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="goodsId" keyProperty="goodsid" parameterType="vo.Goods" useGeneratedKeys="true">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodscode != null">
+        goodsCode,
+      </if>
+      <if test="goodschrname != null">
+        goodsChrName,
+      </if>
+      <if test="goodslocation != null">
+        goodsLocation,
+      </if>
+      <if test="payunit != null">
+        payUnit,
+      </if>
+      <if test="firstdirectory != null">
+        firstDirectory,
+      </if>
+      <if test="seconddirectory != null">
+        secondDirectory,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodscode != null">
+        #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodschrname != null">
+        #{goodschrname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodslocation != null">
+        #{goodslocation,jdbcType=VARCHAR},
+      </if>
+      <if test="payunit != null">
+        #{payunit,jdbcType=VARCHAR},
+      </if>
+      <if test="firstdirectory != null">
+        #{firstdirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="seconddirectory != null">
+        #{seconddirectory,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="vo.Goods">
+    update goods
+    <set>
+      <if test="goodscode != null">
+        goodsCode = #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodschrname != null">
+        goodsChrName = #{goodschrname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodslocation != null">
+        goodsLocation = #{goodslocation,jdbcType=VARCHAR},
+      </if>
+      <if test="payunit != null">
+        payUnit = #{payunit,jdbcType=VARCHAR},
+      </if>
+      <if test="firstdirectory != null">
+        firstDirectory = #{firstdirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="seconddirectory != null">
+        secondDirectory = #{seconddirectory,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goodsId = #{goodsid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="vo.Goods">
+    update goods
+    set goodsCode = #{goodscode,jdbcType=VARCHAR},
+      goodsChrName = #{goodschrname,jdbcType=VARCHAR},
+      goodsLocation = #{goodslocation,jdbcType=VARCHAR},
+      payUnit = #{payunit,jdbcType=VARCHAR},
+      firstDirectory = #{firstdirectory,jdbcType=VARCHAR},
+      secondDirectory = #{seconddirectory,jdbcType=VARCHAR}
+    where goodsId = #{goodsid,jdbcType=VARCHAR}
+  </update>
+</mapper>

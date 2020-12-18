@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/vue.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/index.js"></script>
+    <title>货物添加</title>
+</head>
+
+<body>
+    <div>
+        <div id="win-title">
+            <span>商品信息</span>
+        </div>
+        <div id="win-content">
+            <div class="win-content-1">
+                <div class="type1">
+                    <strong>商品货号</strong>
+                    <input placeholder="请输入商品货号" id="goodsId">
+                </div>
+                <div class="type1">
+                    <strong>条形码</strong>
+                    <input style="width: 310px;" placeholder="请输入条形码" id="goodsCode">
+                </div>
+                <div class="type2" style="margin-top: 10px;">
+                    <strong>商品中文名称</strong>
+                    <input placeholder="请输入商品中文名称" id="goodsChrName">
+                </div>
+                <div class="type1" style="margin-top: 10px;" id="goodsLocation">
+                    <strong>货品产地</strong>
+                    <select id="location">
+                        <option value="0">--请选择--</option>
+                        <option v-for="location in locations" :value="location.id">{{location.goodslocation}}</option>
+                    </select>
+                </div>
+                <div class="type1" style="margin-top: 10px;" id="payUnit">
+                    <strong>计量单位</strong>
+                    <select id="pay_unit">
+                        <option value="0">--请选择--</option>
+                        <option v-for="unit in units" :value="unit.id">{{unit.payunit}}</option>
+                    </select>
+                </div>
+                <div class="type1" style="margin-top: 10px;" id="firstDirectory">
+                    <strong>一级目录</strong>
+                    <select id="first">
+                        <option value="0">--请选择--</option>
+                        <option v-for="sb in sbs" :value="sb.id">{{sb.name}}</option>
+                    </select>
+                </div>
+                <div class="type1" style="margin-top: 10px;" id="secondDirectory">
+                    <strong>二级目录</strong>
+                    <select id="second">
+                        <option value="0">--请选择--</option>
+                        <option v-for="name in names" :value="name.id">{{name.name}}</option>
+                    </select>
+                </div>
+                <div class="btns">
+                    <button class="btn" id="goodsSave">商品保存</button>
+                    <button class="btn">取消</button>
+                    <button class="btn">退出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
